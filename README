@@ -1,0 +1,84 @@
+Jateng Poverty & Unemployment Tracker
+Visualisasi Spasio-Temporal Indikator Kemiskinan dan Pengangguran di Provinsi Jawa Tengah (2007-2025)
+
+Deskripsi Singkat Proyek
+Aplikasi visualisasi interaktif berbasis web yang menampilkan perkembangan 4 indikator kesejahteraan di 35 Kabupaten/Kota Provinsi Jawa Tengah selama periode 2007-2025.
+Aplikasi ini dibangun menggunakan Streamlit dan Folium dengan tujuan memudahkan analisis spasio-temporal data kemiskinan dan pengangguran secara interaktif melalui peta choropleth, grafik tren, dan statistik ringkas.
+
+📌 Indikator yang Ditampilkan: 
+1. Persentase Penduduk Miskin (%)
+2. Tingkat Pengangguran Terbuka	(%)
+3. Garis Kemiskinan	(Rp/kapita/bulan)
+4. Jumlah Penduduk Miskin (Ribu jiwa)
+
+📌 Fitur Utama: 
+1. Peta Choropleth Interaktif: Menampilkan 35 kabupaten/kota dengan warna berdasarkan nilai indikator terpilih
+2. Analisis Tren Kabupaten: Visualisasi Dual-Axis Line Chart membandingkan % Miskin dan TPT kabupaten vs % Miskin dan TPT provinsi
+3. Statistik Ringkas: Menampilkan nilai terbaru, tertinggi, dan terendah per kabupaten
+4. Interaksi Peta	Hover untuk tooltip, klik untuk popup detail lengkap
+
+📌 Sumber Data: 
+Badan Pusat Statistik (BPS) Provinsi Jawa Tengah
+Periode: 2007 - 2025
+Cakupan Spasial: 35 Kabupaten/Kota
+Jumlah Record: 665 (35 kabupaten × 19 tahun)
+
+📌 Struktur Folder: 
+project_streamlit/
+│
+├── app.py                          # File utama aplikasi Streamlit
+├── requirements.txt                # Daftar library yang dibutuhkan
+├── README.md                       # Dokumentasi proyek
+│
+├── data/
+│   ├── df_master.csv               # Data master hasil preprocessing
+│   │
+│   └── geojson/
+│       ├── jateng_2007.geojson
+│       ├── jateng_2008.geojson
+│       ├── ...
+│       └── jateng_2025.geojson     # 19 file GeoJSON Jawa Tengah (per tahun)
+│
+│   # Folder/File yang tidak dipakai di pembuatan streamlit, tapi di preprocessing
+│
+├── Data Spasial-Temporal/
+│   ├── Dataset/                    # Dataset default setelah pengambilan dari sumber data
+│   └── Jawa Tengah/                # Koordinat geojson Jawa Tengah
+│
+└── Ta_Spasio.ipynb                 # File preprocessing data
+
+📌 Instruksi Analisis Dependensi: 
+1. Prasyarat Sistem
+    Python 3.9 atau lebih baru
+    Pip	23.0 atau lebih baru
+    Sistem Operasi Windows
+2. Daftar Library (Dependencies)
+    streamlit 1.35.0
+    pandas 2.2.0
+    numpy 1.26.3
+    folium 0.16.0
+    streamlit-folium 0.23.0
+    matplotlib 3.9.0
+    plotly 5.24.0
+    branca 0.7.0
+
+📌 Langkah Menjalankan Aplikasi:
+1. pip install -r requirements.txt         # Install semua library dari requirements.txt
+2. streamlit run app.py                    # Jalankan aplikasi
+2. python -m streamlit run app.py          # alternatif menjalankan aplikasi
+3. http://localhost:8501                   # buka di browser
+
+📌 Cara Menggunakan Aplikasi:
+1. Sidebar (Panel Kontrol Kiri)
+    Pilih Indikator	: Memilih indikator yang ditampilkan di peta (Persentase Kemiskinan, Tingkat Pengangguran Terbuka, Garis Kemiskinan, Jumlah Penduduk Miskin)
+    Pilih Tahun	: Slider untuk memilih tahun tertentu (2007 - 2025)
+    Play / Stop	: Menjalankan/menghentikan animasi tahunan otomatis
+    Pilih Kabupaten/Kota : Filter peta dan tampilkan analisis tren	Dropdown 35 kabupaten + "Semua Kabupaten"
+2. Peta (Area Utama)
+    Hover pada kabupaten : Tooltip menampilkan nama kabupaten, tahun, dan nilai indikator terpilih
+    Klik pada kabupaten	: Popup menampilkan detail lengkap: nama, tahun, % Miskin, TPT, Garis Kemiskinan, Jumlah Miskin
+    Zoom (scroll/tombol +/-) : Memperbesar/memperkecil tampilan peta
+3. Analisis Tren Temporal (Bawah Peta)
+    Dual-Axis Line Chart : Menampilkan tren % Miskin dan TPT kabupaten terpilih vs tren % Miskin dan TPT kabupaten provinsi
+    Metric Cards : Menampilkan: % Miskin Terbaru, Terendah, Tertinggi dan TPT Terbaru, Terendah, Tertinggi
+
