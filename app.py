@@ -182,13 +182,52 @@ st.markdown("""
         font-weight: 400;
     }
     
-    /* Folium map styling */
+    /* Folium map styling - Dark */
     .folium-map {
         height: 550px !important;
         width: 100% !important;
         border-radius: 10px;
         border: 1px solid var(--border-color);
         box-shadow: 0 2px 8px var(--shadow-color);
+    }
+
+    /* Dark background untuk iframe peta */
+    .folium-map iframe {
+        background-color: #0a0a1a !important;
+    }
+
+    /* Styling untuk tooltip/popup folium agar sesuai tema */
+    .leaflet-popup-content-wrapper {
+        background: #111128 !important;
+        border: 1px solid #44008b !important;
+        border-radius: 8px !important;
+        color: #ffe4f2 !important;
+    }
+
+    .leaflet-popup-tip {
+        background: #111128 !important;
+        border: 1px solid #44008b !important;
+    }
+
+    .leaflet-control-zoom a {
+        background: #111128 !important;
+        color: #ffe4f2 !important;
+        border-color: #44008b !important;
+    }
+
+    .leaflet-control-zoom a:hover {
+        background: #44008b !important;
+        color: #ffe4f2 !important;
+    }
+
+    .leaflet-control-attribution {
+        background: rgba(17, 17, 40, 0.8) !important;
+        color: #c9a0d0 !important;
+        border: 1px solid #44008b !important;
+    }
+
+    .leaflet-control-attribution a {
+        color: #e54ed0 !important;
     }
     
     /* Section title - Dark */
@@ -392,7 +431,7 @@ def format_number(value, indicator_name):
 def get_color(value, min_val, max_val, palette):
     """Mendapatkan warna berdasarkan nilai dan palet"""
     if value is None or pd.isna(value):
-        return '#cccccc'
+        return '#2a2a4a'
     
     if max_val == min_val:
         if palette == 'Oranye':
@@ -404,7 +443,7 @@ def get_color(value, min_val, max_val, palette):
         elif palette == 'Hijau':
             return '#e8f8f5'
         else:
-            return '#cccccc'
+            return '#2a2a4a'
     
     ratio = (value - min_val) / (max_val - min_val)
     
@@ -456,8 +495,8 @@ def get_color(value, min_val, max_val, palette):
             return '#0E6251'
 
     else:
-        return '#cccccc'
-    
+        return '#2a2a4a'
+
 def get_all_kabupaten(df):
     """Mendapatkan daftar semua kabupaten"""
     return sorted(df['kabupaten'].unique())
@@ -614,7 +653,7 @@ max_val = max(values_list) if values_list else 1
 m = folium.Map(
     location=[-7.3, 110.0],
     zoom_start=8.5,
-    tiles='CartoDB positron',
+    tiles='CartoDB dark_matter',
     control_scale=True
 )
 
